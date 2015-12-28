@@ -1,0 +1,116 @@
+[
+    {
+        "pk": 1,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Barril de cerveza",
+            "cal": 3,
+            "order": "drink"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Cerveza",
+            "cal": 1,
+            "order": "drink"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Copa de vino",
+            "cal": 1,
+            "order": "drink"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Botella de vino",
+            "cal": 2,
+            "order": "drink"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Hidromiel",
+            "cal": 2,
+            "order": "drink",
+            "flavour": "sweet"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Pavo relleno",
+            "cal": 4,
+            "order": "second",
+            "flavour": "tasty"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Guindillas",
+            "cal": 1,
+            "order": "first",
+            "flavour": "spicy"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Magdalena",
+            "cal": 1,
+            "order": "dessert",
+            "flavour": "sweet"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Tortitas con nata",
+            "cal": 3,
+            "order": "dessert",
+            "flavour": "sweet"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Estofado",
+            "cal": 3,
+            "order": "second",
+            "flavour": "tasty"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Batido de chocolate",
+            "cal": 2,
+            "order": "drink",
+            "flavour": "sweet"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Pan",
+            "cal": 1
+        }
+    }
+]
