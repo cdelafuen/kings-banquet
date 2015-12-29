@@ -1,0 +1,251 @@
+[
+    {
+        "pk": 1,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Sólo primeros",
+            "number_of_firsts": 6
+        }
+    },
+    {
+        "pk": 2,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Sólo segundos",
+            "number_of_seconds": 6
+        }
+    },
+    {
+        "pk": 3,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Sólo postres",
+            "number_of_desserts": 6
+        }
+    },
+    {
+        "pk": 4,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Comida clásica",
+            "number_of_firsts": 1,
+            "number_of_seconds": 1,
+            "number_of_desserts": 1
+        }
+    },
+    {
+        "pk": 5,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Doble o nada",
+            "number_of_firsts": 2,
+            "number_of_seconds": 2,
+            "number_of_desserts": 2
+        }
+    },
+    {
+        "pk": 6,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Exquisito",
+            "number_of_firsts": 2,
+            "number_of_desserts": 2,
+            "cal": 4
+        }
+    },
+    {
+        "pk": 7,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Exquisito",
+            "number_of_firsts": 1,
+            "number_of_seconds": 3,
+            "number_of_desserts": 1,
+            "cal": 7
+        }
+    },
+    {
+        "pk": 8,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Super exquisito",
+            "number_of_firsts": 1,
+            "number_of_desserts": 1,
+            "today_eat": "spicy, sweet"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Super exquisito",
+            "number_of_firsts": 1,
+            "number_of_seconds": 2,
+            "today_eat": "salty, tasty"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Hoy me apetece...",
+            "today_eat": "sweet"
+        }
+    },
+    {
+        "pk": 11,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Hoy me apetece...",
+            "today_eat": "salty"
+        }
+    },
+    {
+        "pk": 12,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Hoy me apetece...",
+            "today_eat": "spicy"
+        }
+    },
+    {
+        "pk": 13,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Hoy me apetece...",
+            "today_eat": "tasty"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Ñam ñam",
+            "cal": 5
+        }
+    },
+    {
+        "pk": 15,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Ñam ñam",
+            "cal": 6
+        }
+    },
+    {
+        "pk": 16,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Ñam ñam",
+            "cal": 7
+        }
+    },
+    {
+        "pk": 17,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Ñam ñam",
+            "cal": 8
+        }
+    },
+    {
+        "pk": 18,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Un poquito nada más",
+            "cal": 1
+        }
+    },
+    {
+        "pk": 19,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Un poquito nada más",
+            "cal": 2
+        }
+    },
+    {
+        "pk": 20,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Un poquito nada más",
+            "cal": 3
+        }
+    },
+    {
+        "pk": 21,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Un poquito nada más",
+            "cal": 4
+        }
+    },
+    {
+        "pk": 22,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Banquete!",
+            "action": "banquet"
+        }
+    },
+    {
+        "pk": 23,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "A Dieta!",
+            "action": "diet"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Tengo sed!",
+            "action": "thirsty"
+        }
+    },
+    {
+        "pk": 25,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "A lo grande",
+            "cal": 3,
+            "action": "big_ones"
+        }
+    },
+    {
+        "pk": 26,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "A lo grande",
+            "cal": 4,
+            "action": "big_ones"
+        }
+    },
+    {
+        "pk": 27,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Algo pequeño",
+            "cal": 2,
+            "action": "little_ones"
+        }
+    },
+    {
+        "pk": 28,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Algo pequeño",
+            "cal": 1,
+            "action": "little_ones"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "card.kingcard",
+        "fields": {
+            "name": "Que cocine otro!",
+            "action": "not_me"
+        }
+    }
+]

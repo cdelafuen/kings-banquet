@@ -4,8 +4,13 @@ from django.db import models
 
 
 class Card(models.Model):
-    def __unicode__(self):
-        return u'{pk}'.format(pk=self.pk)
+
+    image = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField(max_length=100)
+    cal = models.PositiveSmallIntegerField(blank=True, null=True)
+
+    class Meta:
+        abstract = True
 
 
 class PlayerCard(Card):
@@ -31,10 +36,32 @@ class PlayerCard(Card):
         (TASTY, 'tasty')
     )
 
-    name = models.CharField(max_length=100)
-    cal = models.PositiveSmallIntegerField()
     order = models.CharField(max_length=45, choices=ORDER_CHOICES, blank=True, null=True)
     flavour = models.CharField(max_length=45, choices=FLAVOUR_CHOICES, blank=True, null=True)
 
     def __unicode__(self):
         return u'{pk} {name}'.format(pk=self.pk, name=self.name)
+
+
+class KingCard(Card):
+
+    BANQUET = 'banquet'
+    DIET = 'diet'
+    THIRSTY = 'thirsty'
+    BIG_ONES = 'big_ones'
+    LITTLE_ONES = 'little_ones'
+    NOT_ME = 'not_me'
+    ACTION_CHOICES = (
+        (BANQUET, 'banquet'),
+        (DIET, 'diet'),
+        (THIRSTY, 'thirsty'),
+        (BIG_ONES, 'big_ones'),
+        (LITTLE_ONES, 'little_ones'),
+        (NOT_ME, 'not_me')
+    )
+
+    number_of_firsts = models.PositiveSmallIntegerField(blank=True, null=True)
+    number_of_seconds = models.PositiveSmallIntegerField(blank=True, null=True)
+    number_of_desserts = models.PositiveSmallIntegerField(blank=True, null=True)
+    today_eat = models.CharField(max_length=100, blank=True, null=True)
+    action = models.CharField(max_length=45, choices=ACTION_CHOICES, blank=True, null=True)

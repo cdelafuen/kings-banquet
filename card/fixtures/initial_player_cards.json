@@ -112,5 +112,261 @@
             "name": "Pan",
             "cal": 1
         }
+    },
+    {
+        "pk": 13,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Sopa",
+            "cal": 2,
+            "order": "first",
+            "flavour": "salty"
+        }
+    },
+    {
+        "pk": 14,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Ensalada",
+            "cal": 1,
+            "order": "first",
+            "flavour": "salty"
+        }
+    },
+    {
+        "pk": 15,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Pieza de fruta",
+            "cal": 1,
+            "order": "dessert"
+        }
+    },
+    {
+        "pk": 16,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Fuente de fruta",
+            "cal": 3,
+            "order": "dessert"
+        }
+    },
+    {
+        "pk": 17,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Pierna de cordero",
+            "cal": 2,
+            "order": "second",
+            "flavour": "tasty"
+        }
+    },
+    {
+        "pk": 18,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Entrecot con patatas",
+            "cal": 3,
+            "order": "second",
+            "flavour": "tasty"
+        }
+    },
+    {
+        "pk": 19,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Burrito",
+            "cal": 2,
+            "order": "second",
+            "flavour": "spicy"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Olla de sopa",
+            "cal": 3,
+            "order": "first",
+            "flavour": "salty"
+        }
+    },
+    {
+        "pk": 21,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Helado",
+            "cal": 2,
+            "order": "dessert",
+            "flavour": "sweet"
+        }
+    },
+    {
+        "pk": 22,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Tabasco",
+            "cal": 1,
+            "order": "drink",
+            "flavour": "spicy"
+        }
+    },
+    {
+        "pk": 23,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Pollo picante",
+            "cal": 3,
+            "order": "second",
+            "flavour": "spicy"
+        }
+    },
+    {
+        "pk": 24,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Albóndigas",
+            "cal": 3,
+            "order": "second",
+            "flavour": "tasty"
+        }
+    },
+    {
+        "pk": 25,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Cochinillo",
+            "cal": 4,
+            "order": "second",
+            "flavour": "tasty"
+        }
+    },
+    {
+        "pk": 26,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Caldo de pollo",
+            "cal": 1,
+            "order": "first",
+            "flavour": "tasty"
+        }
+    },
+    {
+        "pk": 27,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Pizza de guindillas",
+            "cal": 3,
+            "order": "second",
+            "flavour": "spicy"
+        }
+    },
+    {
+        "pk": 28,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Espaguetis con albóndigas",
+            "cal": 4,
+            "order": "second",
+            "flavour": "tasty"
+        }
+    },
+    {
+        "pk": 29,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Jarra de limonada",
+            "cal": 2,
+            "order": "drink"
+        }
+    },
+    {
+        "pk": 30,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Jarra de agua",
+            "cal": 1,
+            "order": "drink"
+        }
+    },
+    {
+        "pk": 31,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Bacalao",
+            "cal": 2,
+            "order": "second",
+            "flavour": "salty"
+        }
+    },
+    {
+        "pk": 32,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Sushi con wasabi",
+            "cal": 1,
+            "order": "first",
+            "flavour": "spicy"
+        }
+    },
+    {
+        "pk": 33,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Nachos",
+            "cal": 2,
+            "order": "first",
+            "flavour": "salty"
+        }
+    },
+    {
+        "pk": 34,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Fuente de embutido",
+            "cal": 3,
+            "order": "first",
+            "flavour": "salty"
+        }
+    },
+    {
+        "pk": 35,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Perrito caliente",
+            "cal": 2,
+            "order": "second",
+            "flavour": "tasty"
+        }
+    },
+    {
+        "pk": 36,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Hamburguesa",
+            "cal": 3,
+            "order": "second",
+            "flavour": "tasty"
+        }
+    },
+    {
+        "pk": 37,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Tarta",
+            "cal": 4,
+            "order": "dessert",
+            "flavour": "sweet"
+        }
+    },
+    {
+        "pk": 38,
+        "model": "card.playercard",
+        "fields": {
+            "name": "Fondue de chocolate",
+            "cal": 4,
+            "order": "dessert",
+            "flavour": "sweet"
+        }
     }
 ]
