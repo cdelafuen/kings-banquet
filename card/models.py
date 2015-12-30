@@ -12,6 +12,9 @@ class Card(models.Model):
     class Meta:
         abstract = True
 
+    def __unicode__(self):
+        return u'{pk} {name}'.format(pk=self.pk, name=self.name)
+
 
 class PlayerCard(Card):
     FIRST = 'first'
@@ -38,9 +41,6 @@ class PlayerCard(Card):
 
     order = models.CharField(max_length=45, choices=ORDER_CHOICES, blank=True, null=True)
     flavour = models.CharField(max_length=45, choices=FLAVOUR_CHOICES, blank=True, null=True)
-
-    def __unicode__(self):
-        return u'{pk} {name}'.format(pk=self.pk, name=self.name)
 
 
 class KingCard(Card):
