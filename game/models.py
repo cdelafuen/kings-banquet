@@ -15,6 +15,7 @@ class Game(models.Model):
         self.king_cards = []
         self.discard_pile = []
         self.players = []
+        self.active_player = 0
 
     def start(self, player_cards, king_cards, players):
         """"
@@ -74,6 +75,26 @@ class Game(models.Model):
             return self.discard_pile.pop(0)
         except IndexError:
             return None
+
+    def start_new_turn(self):
+        turn_cards = []
+        for player in self.players:
+            turn_cards.append(player.get_new_active_card())
+        king_card = self.draw_king_card()
+        return turn_cards, king_card
+
+    def end_new_turn(self, turn_cards, king_card):
+        # Return (or not) the active card for each player
+        counter = 0
+        for turn_card in turn_cards:
+            if turn_card:
+                self.players[(self.active_player + counter) % len(self.players)].add_card(turn_card)  # TODO add draw or not rule
+            counter += 1
+        # Get new active player
+        self.active_player = (self.active_player + 1) % len(self.players)
+        # Return the king_card if its not empty
+        if king_card:
+            self.add_king_card(king_card)
 
 
 class WinError(Exception):

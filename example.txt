@@ -1,0 +1,7 @@
+from card.models import *
+from game.models import *
+g = Game()
+players = [Player('A', 60), Player('B', 93), Player('C', 70)]
+g.start(PlayerCard.objects.all(), KingCard.objects.all(), players)
+
+turn_cards, king_card = g.start_new_turn()
