@@ -79,7 +79,8 @@ class Game(models.Model):
     def start_new_turn(self):
         turn_cards = []
         for player in self.players:
-            turn_cards.append(player.get_new_active_card())
+            if not player.active_card:
+                turn_cards.append(player.get_new_active_card())
         king_card = self.draw_king_card()
         return turn_cards, king_card
 
@@ -87,8 +88,10 @@ class Game(models.Model):
         # Return (or not) the active card for each player
         counter = 0
         for turn_card in turn_cards:
-            if turn_card:
-                self.players[(self.active_player + counter) % len(self.players)].add_card(turn_card)  # TODO add draw or not rule
+            if turn_card:  # TODO add draw or not rule, now discard by default
+                player_num = (self.active_player + counter) % len(self.players)
+                self.players[player_num].add_card(turn_card)
+                self.players[player_num].active_card = None
             counter += 1
         # Get new active player
         self.active_player = (self.active_player + 1) % len(self.players)
@@ -98,6 +101,9 @@ class Game(models.Model):
 
 
 class WinError(Exception):
+    """
+    Someone has won
+    """
     pass
 
 

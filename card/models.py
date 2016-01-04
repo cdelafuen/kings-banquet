@@ -75,35 +75,63 @@ class KingCard(Card):
             eaten_firsts = 0
             eaten_seconds = 0
             eaten_desserts = 0
+            loop = 0
             for card in turn_cards:
                 check_today_eat = True
-                check_first = True
-                check_second = True
-                check_dessert = True
                 check_calories = True
+                check_order = True
                 if self.today_eat:
-                    check_today_eat = card.flavour in self.today_eat
-                if self.number_of_firsts:
-                    if card.order == card.FIRST:
-                        check_first = eaten_firsts < self.number_of_firsts
-                        eaten_firsts += 1
-                if self.number_of_seconds:
-                    if card.order == card.SECOND:
-                        check_second = eaten_seconds < self.number_of_seconds
-                        eaten_seconds += 1
-                if self.number_of_desserts:
-                    if card.order == card.DESSERT:
-                        check_dessert = eaten_desserts < self.number_of_desserts
-                        eaten_desserts += 1
-                if self.cal:
-                    check_calories = (eaten_desserts + card.cal) <= eaten_calories
-                    if check_calories:
-                        eaten_calories += card.cal
+                    if card.flavour:
+                        check_today_eat = card.flavour in self.today_eat
+                    else:
+                        check_today_eat = False
+
+                if check_today_eat and any([self.number_of_firsts, self.number_of_seconds, self.number_of_desserts]):
+                    check_order = self._check_order(card, eaten_firsts, eaten_seconds, eaten_desserts) and card.order != card.DRINK
+
+                if check_order and self.cal:
+                    check_calories = (eaten_calories + card.cal) <= self.cal
+
+                if all([check_today_eat, check_order, check_calories]):
+                    eaten_firsts, eaten_seconds, eaten_desserts, eaten_calories = self._update_eaten_meals(card,
+                                                                                                           eaten_firsts,
+                                                                                                           eaten_seconds,
+                                                                                                           eaten_desserts,
+                                                                                                           eaten_calories)
+                    returned_cards[loop] = None
+                loop += 1
         else:
-            # TODO multiple action-functions
-            pass
+            executing_action = getattr(self, '_execute_{}'.format(self.action))
+            returned_cards = executing_action(turn_cards)
 
         return turn_cards, returned_cards
+
+    def _check_order(self, card, eaten_firsts, eaten_seconds, eaten_desserts):
+        if self.number_of_firsts and card.order == card.FIRST:
+            check_first = eaten_firsts < self.number_of_firsts
+        else:
+            check_first = False
+        if self.number_of_seconds and card.order == card.SECOND:
+            check_second = eaten_seconds < self.number_of_seconds
+        else:
+            check_second = False
+        if self.number_of_desserts and card.order == card.DESSERT:
+            check_dessert = eaten_desserts < self.number_of_desserts
+        else:
+            check_dessert = False
+
+        check_order = any([check_first, check_second, check_dessert])
+        return check_order
+
+    def _update_eaten_meals(self, card, eaten_firsts, eaten_seconds, eaten_desserts, eaten_calories):
+        if card.order == card.FIRST:
+            eaten_firsts += 1
+        if card.order == card.SECOND:
+            eaten_seconds += 1
+        if card.order == card.DESSERT:
+            eaten_desserts += 1
+        eaten_calories += card.cal
+        return eaten_firsts, eaten_seconds, eaten_desserts, eaten_calories
 
     def _execute_banquet(self, cards):
         return [None for card in cards]
