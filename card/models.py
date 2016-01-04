@@ -104,7 +104,7 @@ class KingCard(Card):
             executing_action = getattr(self, '_execute_{}'.format(self.action))
             returned_cards = executing_action(turn_cards)
 
-        return turn_cards, returned_cards
+        return returned_cards
 
     def _check_order(self, card, eaten_firsts, eaten_seconds, eaten_desserts):
         if self.number_of_firsts and card.order == card.FIRST:

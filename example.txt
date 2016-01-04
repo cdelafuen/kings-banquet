@@ -4,4 +4,15 @@ g = Game()
 players = [Player('A', 60), Player('B', 93), Player('C', 70)]
 g.start(PlayerCard.objects.all(), KingCard.objects.all(), players)
 
-turn_cards, king_card = g.start_new_turn()
+while True:
+    turn_cards, king_card = g.start_new_turn()
+    print "----------------"
+    print turn_cards
+    print king_card
+    returned_cards = king_card.execute_action(turn_cards)
+    print returned_cards
+    print "-----------------"
+    for index, card in enumerate(returned_cards, start=0):
+        if not card:
+            g.add_discard(turn_cards[index])
+    g.end_new_turn(returned_cards, king_card)

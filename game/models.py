@@ -86,13 +86,10 @@ class Game(models.Model):
 
     def end_new_turn(self, turn_cards, king_card):
         # Return (or not) the active card for each player
-        counter = 0
-        for turn_card in turn_cards:
+        for index, turn_card in enumerate(turn_cards, start=0):
             if turn_card:  # TODO add draw or not rule, now discard by default
-                player_num = (self.active_player + counter) % len(self.players)
-                self.players[player_num].add_card(turn_card)
-                self.players[player_num].active_card = None
-            counter += 1
+                self.players[index].add_card(turn_card)
+            self.players[index].active_card = None
         # Get new active player
         self.active_player = (self.active_player + 1) % len(self.players)
         # Return the king_card if its not empty
