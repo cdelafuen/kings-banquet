@@ -2,9 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Kings Banquet</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+    <div class="container">
+        <h1>Kings Banquet</h1>
+        <p><form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                {{ field.name }}: {{ field }} <br>
+            {% endfor %}
+            <button type="submit">
+                 Comenzar
+            </button>
+        </form></p>
+        {% if error %}
+            <mark class="text-danger">{{ error }}</mark>
+        {% else %}
+            <p class="text-success">
+                Descartes: {{ game.discard_pile }} <br>
+                <table class="table">
+                    <thead>
+                        <th>Nombre</th>
+                        <th>Peso</th>
+                    </thead>
+                    <tbody>
+                        {% for player in game.players %}
+                            <tr {% if forloop.counter|add:-1 == game.active_player %} class="active" {% endif %}>
+                                <td> {{ player.name }}</td>
+                                <td> {{ player.weight }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </p>
+        {% endif %}
+    </div>
 </body>
 </html>
