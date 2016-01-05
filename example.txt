@@ -7,6 +7,7 @@ g.start(PlayerCard.objects.all(), KingCard.objects.all(), players)
 while True:
     turn_cards, king_card = g.start_new_turn()
     print "----------------"
+    print "Jugador actual {}".format(g.players[g.active_player].weight)
     print turn_cards
     print king_card
     returned_cards = king_card.execute_action(turn_cards)
@@ -15,4 +16,7 @@ while True:
     for index, card in enumerate(returned_cards, start=0):
         if not card:
             g.add_discard(turn_cards[index])
+    if king_card.action == king_card.DIET:  # Diet action
+        g.add_king_card(king_card)
+        g.shuffle(king_cards=True)
     g.end_new_turn(returned_cards, king_card)

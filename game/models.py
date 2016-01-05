@@ -90,6 +90,8 @@ class Game(models.Model):
             if turn_card:  # TODO add draw or not rule, now discard by default
                 self.players[index].add_card(turn_card)
             self.players[index].active_card = None
+            if self.players[index].check_win():
+                raise WinError(self.players[index])
         # Get new active player
         self.active_player = (self.active_player + 1) % len(self.players)
         # Return the king_card if its not empty
@@ -126,3 +128,8 @@ class Player(models.Model):
 
     def add_card(self, card):
         self.card_pile.append(card)
+
+    def check_win(self):
+        if not self.card_pile and not self.active_card:
+            return True
+        return False
