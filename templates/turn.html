@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kings Banquet</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Kings Banquet</h1>
+        </div>
+        {% for player in game.players %}
+            <div class="row">
+                <div class="col-sm-4">
+                    <div {% if forloop.counter|add:-1 == game.active_player %} class="active" {% endif %}>
+                        <h3>Jugador {{ player.name }}</h3>
+                    </div>
+                    Cartas restantes: {{ player.card_pile|length }}<br>
+                    Que cocine otro: {{ player.not_me_cards|length }}
+                </div>
+                <div class="col-sm-4">
+                    <h3>Carta activa:</h3>
+                    {% if player.active_card %}
+                        {{ player.active_card.name }}
+                    {% endif %}
+                </div>
+                <div class="col-sm-4">
+                    {% if forloop.counter|add:-1 == game.active_player %}
+                        <h3>Carta del Rey</h3>
+                        {{ king_card.name }}
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
