@@ -19,6 +19,14 @@ def home(request):
             players = [player1, player2, player3]
             game = Game()
             game.start(PlayerCard.objects.all(), KingCard.objects.all(), players)
+            turn_cards, king_card = game.start_new_turn()
+            # game.turn_player_cards = game.player_cards,
+            # game.turn_king_cards = game.king_cards,
+            # game.turn_discard_pile = game.discard_pile,
+            # game.turn_players = game.players
+            # game.save()
+            # request.session['game'] = game.id
+            return render(request, 'turn.html', locals())
         else:
             error = "Rellena todos los datos"
 

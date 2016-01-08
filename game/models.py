@@ -5,9 +5,37 @@ import random
 from django.db import models
 
 
+class CardListField(models.TextField):
+    def __init__(self, *args, **kwargs):
+        self.token = kwargs.pop('token', ',')
+        super(CardListField, self).__init__(*args, **kwargs)
+
+    def to_python(self, value):
+        if not value:
+            return
+        if isinstance(value, list):
+            return value
+        return value.split(self.token)
+
+    def get_prep_value(self, value):
+        if not value:
+            return
+        assert(isinstance(value, list) or isinstance(value, tuple))
+        return self.token.join([unicode(s) for s in value])
+
+    def value_to_string(self, obj):
+        value = self._get_val_from_obj(obj)
+        return self.get_prep_value(value)
+
+
 class Game(models.Model):
 
-    datetime = models.DateTimeField(auto_now_add=True)
+    # datetime = models.DateTimeField(auto_now_add=True)
+    # turn_player_cards = CardListField()
+    # turn_king_cards = CardListField()
+    # turn_discard_pile = CardListField()
+    # turn_players = CardListField()
+    # active_player = models.PositiveSmallIntegerField(default=0)
 
     def __init__(self, *args, **kwargs):
         super(Game, self).__init__(*args, **kwargs)

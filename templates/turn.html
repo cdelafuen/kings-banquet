@@ -23,14 +23,24 @@
                 </div>
                 <div class="col-sm-4">
                     <h3>Carta activa:</h3>
-                    {% if player.active_card %}
-                        {{ player.active_card.name }}
-                    {% endif %}
+                    <div class="well" style="background: {% if player.active_card.flavour == "spicy"%}lightcoral{% endif %}
+                                                         {% if player.active_card.flavour == "sweet"%}lightpink{% endif %}
+                                                         {% if player.active_card.flavour == "tasty"%}lightsalmon{% endif %}
+                                                         {% if player.active_card.flavour == "salty"%}lightgreen{% endif %}">
+                        {% if player.active_card %}
+                            {{ player.active_card.name }}<br>
+                            Calorías: {{ player.active_card.cal }}<br>
+                            {% if player.active_card.order %}
+                                Orden: {{ player.active_card.order }}
+                            {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="col-sm-4">
                     {% if forloop.counter|add:-1 == game.active_player %}
                         <h3>Carta del Rey</h3>
-                        {{ king_card.name }}
+                        {{ king_card.name }}<br>
+                        {{ king_card.today_eat }}<br>
                     {% endif %}
                 </div>
             </div>
