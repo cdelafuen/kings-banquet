@@ -24,7 +24,7 @@ def home(request):
             # game.turn_king_cards = game.king_cards,
             # game.turn_discard_pile = game.discard_pile,
             # game.turn_players = game.players
-            # game.save()
+            game.save()
             # request.session['game'] = game.id
             return render(request, 'turn.html', locals())
         else:

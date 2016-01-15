@@ -3,39 +3,20 @@ from __future__ import unicode_literals
 import random
 
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
-
-class CardListField(models.TextField):
-    def __init__(self, *args, **kwargs):
-        self.token = kwargs.pop('token', ',')
-        super(CardListField, self).__init__(*args, **kwargs)
-
-    def to_python(self, value):
-        if not value:
-            return
-        if isinstance(value, list):
-            return value
-        return value.split(self.token)
-
-    def get_prep_value(self, value):
-        if not value:
-            return
-        assert(isinstance(value, list) or isinstance(value, tuple))
-        return self.token.join([unicode(s) for s in value])
-
-    def value_to_string(self, obj):
-        value = self._get_val_from_obj(obj)
-        return self.get_prep_value(value)
+from card.models import PlayerCard, KingCard
 
 
 class Game(models.Model):
 
-    # datetime = models.DateTimeField(auto_now_add=True)
-    # turn_player_cards = CardListField()
-    # turn_king_cards = CardListField()
-    # turn_discard_pile = CardListField()
-    # turn_players = CardListField()
-    # active_player = models.PositiveSmallIntegerField(default=0)
+    datetime = models.DateTimeField(auto_now_add=True)
+    saving_player_cards = models.ManyToManyField(PlayerCard, through='ListGamePlayerCard', related_name='player_cards')
+    saving_king_cards = models.ManyToManyField(KingCard, through='ListGameKingCard', related_name='king_cards')
+    saving_discard_pile = models.ManyToManyField(PlayerCard, through='ListGameDiscardCard', related_name='discard_pile')
+    saving_players = models.ManyToManyField('Player', related_name='players')
+    active_player = models.PositiveSmallIntegerField(default=0)
 
     def __init__(self, *args, **kwargs):
         super(Game, self).__init__(*args, **kwargs)
@@ -43,7 +24,6 @@ class Game(models.Model):
         self.king_cards = []
         self.discard_pile = []
         self.players = []
-        self.active_player = 0
 
     def start(self, player_cards, king_cards, players):
         """"
@@ -127,6 +107,17 @@ class Game(models.Model):
             self.add_king_card(king_card)
 
 
+@receiver(post_save, sender=Game)
+def _generate_saving_objects(sender, instance, **kwargs):
+    ListGamePlayerCard.objects.filter(game=instance.pk).delete()
+    for index, card in enumerate(instance.player_cards, start=1):
+        ListGamePlayerCard.objects.create(game=instance, card=card, order=index)
+    #saving_player_cards = models.ManyToManyField(PlayerCard, through='ListGamePlayerCard', related_name='player_cards')
+    #saving_king_cards = models.ManyToManyField(KingCard, through='ListGameKingCard', related_name='king_cards')
+    #saving_discard_pile = models.ManyToManyField(PlayerCard, through='ListGameDiscardCard', related_name='discard_pile')
+    #saving_players = models.ManyToManyField('Player', related_name='players')
+
+
 class WinError(Exception):
     """
     Someone has won
@@ -136,10 +127,14 @@ class WinError(Exception):
 
 class Player(models.Model):
 
-    def __init__(self, name, weight, *args, **kwargs):
+    name = models.CharField(max_length=45)
+    weight = models.PositiveSmallIntegerField()
+    saving_active_card = models.ForeignKey(PlayerCard)
+    saving_card_pile = models.ManyToManyField(PlayerCard, through='ListPlayerCard', related_name='card_pile')
+    saving_not_me_cards = models.PositiveSmallIntegerField()
+
+    def __init__(self, *args, **kwargs):
         super(Player, self).__init__(*args, **kwargs)
-        self.name = name
-        self.weight = weight
         self.card_pile = []
         self.active_card = None
         self.not_me_cards = []
@@ -161,3 +156,27 @@ class Player(models.Model):
         if not self.card_pile and not self.active_card:
             return True
         return False
+
+
+class ListGamePlayerCard(models.Model):
+    card = models.ForeignKey(PlayerCard)
+    game = models.ForeignKey('Game')
+    order = models.PositiveSmallIntegerField()
+
+
+class ListGameDiscardCard(models.Model):
+    card = models.ForeignKey(PlayerCard)
+    game = models.ForeignKey('Game')
+    order = models.PositiveSmallIntegerField()
+
+
+class ListGameKingCard(models.Model):
+    card = models.ForeignKey(KingCard)
+    game = models.ForeignKey('Game')
+    order = models.PositiveSmallIntegerField()
+
+
+class ListPlayerCard(models.Model):
+    card = models.ForeignKey(PlayerCard)
+    player = models.ForeignKey('Player')
+    order = models.PositiveSmallIntegerField()
